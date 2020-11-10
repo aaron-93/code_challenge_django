@@ -14,12 +14,57 @@ class User(AbstractUser):
     PREFERENCE_CHOICES = ((PREFERENCE_BOOK, "Books"), (PREFERENCE_MOVIE, "Movies"))
 
     # Language selection
-    LANGUAGE_KR = "korean"
+    LANGUAGE_KR = "한국어"
     LANGUAGE_EN = "english"
-    LANGUAGE_CHOICES = ((LANGUAGE_KR, "Korean"), (LANGUAGE_EN, "English"))
+    LANGUAGE_CHOICES = ((LANGUAGE_KR, "한국어"), (LANGUAGE_EN, "English"))
 
-    avatar = models.ImageField(null=True, blank=True)
+    # Favourite Book Genre
+    BOOK_LIT = "문학/Literature"
+    BOOK_HUM = "인문/Humanities"
+    BOOK_SOC = "사회/Society"
+    BOOK_BIS = "비즈니스/Business"
+    BOOK_SCI = "과학/Science"
+    BOOK_ART = "예술/Art"
+    BOOK_ETC = "기타/Etc"
+
+    BOOK_CHOICES = (
+        (BOOK_LIT, "문학/Literature"),
+        (BOOK_HUM, "인문/Humanities"),
+        (BOOK_SOC, "사회/Society"),
+        (BOOK_BIS, "비즈니스/Business"),
+        (BOOK_SCI, "과학/Science"),
+        (BOOK_ART, "예술/Art"),
+        (BOOK_ETC, "기타/Etc"),
+    )
+
+    # Favourite Movie Genre
+    MOVIE_ACT = "액션/Action"
+    MOVIE_DRA = "드라마/Drama"
+    MOVIE_THR = "스릴러/Thriller"
+    MOVIE_SCI = "공상과학/Sci-Fi"
+    MOVIE_FNT = "판타지/Fantasy"
+    MOVIE_NOR = "느와르/Noir"
+    MOVIE_ETC = "기타/Etc"
+
+    MOVIE_CHOICES = (
+        (MOVIE_ACT, "액션/Action"),
+        (MOVIE_DRA, "드라마/Drama"),
+        (MOVIE_THR, "스릴러/Thriller"),
+        (MOVIE_SCI, "공상과학/Sci-Fi"),
+        (MOVIE_FNT, "판타지/Fantasy"),
+        (MOVIE_NOR, "느와르/Noir"),
+        (MOVIE_ETC, "기타/Etc"),
+    )
+    bio = models.TextField(default="", blank=True)
+    Language = models.CharField(
+        choices=LANGUAGE_CHOICES, max_length=10, null=True, blank=True
+    )
     Preference = models.CharField(
         choices=PREFERENCE_CHOICES, max_length=10, null=True, blank=True
     )
-    bio = models.TextField(default="", blank=True)
+    Favorite_Book_Genre = models.CharField(
+        choices=BOOK_CHOICES, max_length=20, null=True, blank=True
+    )
+    Favorite_Movie_Genre = models.CharField(
+        choices=MOVIE_CHOICES, max_length=20, null=True, blank=True
+    )
