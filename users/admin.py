@@ -14,11 +14,26 @@ class CustomUserAdmin(UserAdmin):
             {
                 "fields": (
                     "bio",
-                    "Language",
                     "Preference",
+                    "Language",
                     "Favorite_Book_Genre",
                     "Favorite_Movie_Genre",
                 )
             },
         ),
+    )
+
+    list_display = (
+        "username",
+        "Language",
+        "Preference",
+        "Favorite_Book_Genre",
+        "Favorite_Movie_Genre",
+    )
+
+    list_filter = (
+        "Language",
+        "Preference",
+        "Favorite_Book_Genre",
+        "Favorite_Movie_Genre",
     )
