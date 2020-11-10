@@ -1,16 +1,24 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 from . import models
 
 
 @admin.register(models.User)
-class CustomUserAdmin(admin.ModelAdmin):
+class CustomUserAdmin(UserAdmin):
 
     """ Custom User Admin """
 
-    list_display = (
-        "username",
-        "Language",
-        "Preference",
-        "Favorite_Book_Genre",
-        "Favorite_Movie_Genre",
+    fieldsets = UserAdmin.fieldsets + (
+        (
+            "Custom Profile",
+            {
+                "fields": (
+                    "bio",
+                    "Language",
+                    "Preference",
+                    "Favorite_Book_Genre",
+                    "Favorite_Movie_Genre",
+                )
+            },
+        ),
     )
